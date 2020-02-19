@@ -1,5 +1,8 @@
 package br.com.bandtec.FourArt.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Usuario {
 
 	private int idUsuario;
@@ -9,6 +12,9 @@ public class Usuario {
 	private String Nome;
 
 	private String Senha;
+
+	public Usuario() {
+	}
 
 	public Usuario(int idUsuario, String email, String nome, String senha) {
 		this.idUsuario = idUsuario;

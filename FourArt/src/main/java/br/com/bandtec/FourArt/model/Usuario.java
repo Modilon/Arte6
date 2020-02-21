@@ -1,67 +1,85 @@
 package br.com.bandtec.FourArt.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Usuario {
 
-	private int idUsuario;
+	@Id
+	private Long idUsuario;
 
-	private String Email;
+	@NotEmpty
+	private String email;
 
-	private String Nome;
+	@NotEmpty
+	private String nome;
 
-	private String Senha;
+	@NotEmpty
+	private String senha;
 
 	public Usuario() {
 	}
 
-	public Usuario(int idUsuario, String email, String nome, String senha) {
+	public Usuario(@NotEmpty Long idUsuario, @NotEmpty String email, @NotEmpty String nome, @NotEmpty String senha) {
 		this.idUsuario = idUsuario;
-		Email = email;
-		Nome = nome;
-		Senha = senha;
+		this.email = email;
+		this.nome = nome;
+		this.senha = senha;
 	}
 
-	public int getIdUsuario() {
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getNome() {
-		return Nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 
 	public String getSenha() {
-		return Senha;
+		return this.senha;
 	}
 
 	public void setSenha(String senha) {
-		Senha = senha;
+		this.senha = senha;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Usuario usuario = (Usuario) o;
+
+		return idUsuario.equals(usuario.idUsuario) && nome.equals(usuario.nome);
 	}
 
 	@Override
 	public String toString() {
 		return "Usuario{" +
 				"idUsuario=" + idUsuario +
-				", Email='" + Email + '\'' +
-				", Nome='" + Nome + '\'' +
-				", Senha='" + Senha + '\'' +
+				", Email='" + this.email + '\'' +
+				", Nome='" + this.nome + '\'' +
+				", Senha='" + this.senha + '\'' +
 				'}';
 	}
 }

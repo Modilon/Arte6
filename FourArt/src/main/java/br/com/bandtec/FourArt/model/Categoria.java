@@ -6,6 +6,8 @@ public class Categoria {
 
 	private String nome;
 
+	public Categoria() {}
+
 	public Categoria(int idCategoria, String nome) {
 		this.idCategoria = idCategoria;
 		this.nome = nome;

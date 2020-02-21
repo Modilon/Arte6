@@ -15,15 +15,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 class FourArtApplicationTests {
 
 	@Test
-	public void contextLoads() {
-		Assert.assertEquals(1,1);
-	}
-
-	@Test
 	public void modelCategoria(){
 		Categoria categoria = new Categoria(1, "Teste");
+		categoria.setIdCategoria(1);
+		categoria.setNome("Teste");
 		Assert.assertEquals(1, categoria.getIdCategoria());
 		Assert.assertEquals("Teste", categoria.getNome());
+		Assert.assertEquals("Categoria{idCategoria=1, nome='Teste'}", categoria.toString());
+		categoria = new Categoria();
+		Assert.assertEquals(null, categoria.getNome());
 	}
 
 }

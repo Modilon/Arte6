@@ -1,43 +1,46 @@
-CREATE DATABASE ARTE6;
+create database arte6;
 
 CREATE TABLE USUARIO(
-	ID_USUARIO	SERIAL 	PRIMARY KEY	NOT NULL ,
-	NOME		VARCHAR(60)	NOT NULL,
-	EMAIL		VARCHAR(60)	NOT NULL,
-	SENHA		VARCHAR(255) NOT NULL
+                        ID_USUARIO int PRIMARY KEY	NOT NULL ,
+                        NOME		VARCHAR(60)	NOT NULL,
+                        EMAIL		VARCHAR(60)	NOT NULL,
+                        SENHA		VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE PUBLICACAO(
-	ID_PUBLI		SERIAL	PRIMARY KEY NOT NULL,
-	TITL_PUBLI	VARCHAR(60) NOT NULL,
-	DESC_PUBLI		VARCHAR(255) NOT NULL,
-    	COMENTARIO		VARCHAR(255) NOT NULL,
-	NOTA_AVAL		INT	NOT NULL,
-    	DH_INCL			DATETIME,
-    	FK_USUARIO SERIAL REFERENCES USUARIO (ID_USUARIO)
+                           ID_PUBLI	int PRIMARY KEY NOT NULL,
+                           TITL_PUBLI	VARCHAR(60) NOT NULL,
+                           DESC_PUBLI		VARCHAR(255) NOT NULL,
+                           COMENTARIO		VARCHAR(255) NOT NULL,
+                           NOTA_AVAL		INT	NOT NULL,
+                           DH_INCL			TIMESTAMP,
+                           ID_USUARIO int,
+                           foreign key (ID_USUARIO) REFERENCES USUARIO (ID_USUARIO)
 );
 
 CREATE TABLE CATEGORIA(
-	ID_CAT 		SERIAL PRIMARY KEY NOT NULL,
-    	NOME_CAT	VARCHAR(60)
+                          ID_CAT int PRIMARY KEY NOT NULL,
+                          NOME_CAT	VARCHAR(60)
 );
 
 CREATE TABLE PORTFOLIO(
-	ID_PORTF 		SERIAL	PRIMARY KEY NOT NULL,
-    	TITL_PORTF		VARCHAR(60) NOT NULL,
-    	DESC_PORTF		VARCHAR(255) NOT NULL,
-    	STATUS_PORTF	BOOLEAN NOT NULL,	
-	VALOR			FLOAT NOT NULL,
-    	FK_USUARIO SERIAL REFERENCES USUARIO (ID_USUARIO),
-    	FK_PUBLI SERIAL REFERENCES PUBLICACAO(ID_PUBLI),
-    	FK_CAT SERIAL REFERENCES CATEGORIA(ID_CAT)
+                          ID_PORTF int PRIMARY KEY NOT NULL,
+                          TITL_PORTF		VARCHAR(60) NOT NULL,
+                          DESC_PORTF		VARCHAR(255) NOT NULL,
+                          STATUS_PORTF	BOOLEAN NOT NULL,
+                          VALOR			FLOAT NOT NULL,
+                          ID_USUARIO int,
+                          foreign key (ID_USUARIO) REFERENCES USUARIO (ID_USUARIO),
+                          ID_PUBLI int,
+                          foreign key (ID_PUBLI) REFERENCES PUBLICACAO(ID_PUBLI),
+                          ID_CAT int,
+                          foreign key (ID_CAT) REFERENCES CATEGORIA(ID_CAT)
 );
 
-
-
 CREATE TABLE IMAGEM(
-	ID_IMG		SERIAL	PRIMARY KEY	NOT NULL,
-    	NOME_IMG	VARCHAR(60)	NOT NULL,
-    	DESC_IMG	VARCHAR(255) NOT NULL,
-    	FK_PORTF SERIAL REFERENCES PORTFOLIO(ID_PORTF)
+                       ID_IMG int PRIMARY KEY NOT NULL,
+                       NOME_IMG	VARCHAR(60)	NOT NULL,
+                       DESC_IMG	VARCHAR(255) NOT NULL,
+                       ID_PORTF int,
+                       foreign key (ID_PORTF) REFERENCES PORTFOLIO(ID_PORTF)
 );

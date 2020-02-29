@@ -13,6 +13,8 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
     public Usuario findUsuarioByLogin(String login);
 
+    public Usuario findUsuarioByIdUsuario(Long idUsuario);
+
     public Boolean existsByLogin(String login);
 
     public List<Usuario> findAllByOrderByIdUsuario();

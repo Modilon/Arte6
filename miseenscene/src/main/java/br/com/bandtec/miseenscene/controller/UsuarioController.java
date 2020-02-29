@@ -32,6 +32,20 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping("/excluir/{login}")
+    @GetMapping("/buscar/{login}")
+    public Usuario buscarUsuarioPorLogin(@PathVariable("login") String login){
+        return usuarioService.buscarPorLogin(login);
+    }
 
+    @DeleteMapping("/excluir/{login}")
+    public Boolean removerUsuario(@PathVariable("login") String login){
+        try {
+            Usuario usuario = usuarioService.buscarPorLogin(login);
+            usuarioService.remover(usuario);
+            return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+    }
 }

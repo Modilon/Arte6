@@ -25,22 +25,22 @@ public class UsuarioService implements UsuarioServiceInterface {
 
     @Override
     public void remover(Usuario usuario) {
-
+        usuarioRepository.delete(usuario);
     }
 
     @Override
     public Usuario buscarPorId(Long idUsuario) {
-        return null;
+        return usuarioRepository.findUsuarioByIdUsuario(idUsuario);
     }
 
     @Override
     public Usuario buscarPorLogin(String login) {
-        return null;
+        return usuarioRepository.findUsuarioByLogin(login);
     }
 
     @Override
     public Boolean existeByLogin(String login) {
-        return null;
+        return usuarioRepository.existsByLogin(login);
     }
 
     @Override

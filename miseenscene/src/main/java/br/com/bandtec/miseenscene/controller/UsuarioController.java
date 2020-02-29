@@ -19,16 +19,35 @@ public class UsuarioController {
         return usuarioService.listar();
     }
 
+    @PostMapping("/logar/{login}/{senha}")
+    public String logar(@PathVariable("login") String login,
+                         @PathVariable("senha") String senha){
+        if(usuarioService.existeByLogin(login)){
+            Usuario usuario = usuarioService.buscarPorLogin(login);
+            if(usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)){
+                return "Login realizado com sucesso, seja bem-vindo: " + login;
+            }else{
+                return "Login ou senha invalidos";
+            }
+        }else{
+            return "Usuário não cadastrado";
+        }
+    }
+
     @PostMapping("/add/{email}/{login}/{senha}")
-    public Boolean salvarUsuario(@PathVariable("email") String email,
+    public String salvarUsuario(@PathVariable("email") String email,
                                  @PathVariable("login") String login,
                                  @PathVariable("senha") String senha){
         Usuario usuario = new Usuario(email, login, senha);
         try{
-            usuarioService.salvar(usuario);
-            return true;
+            if(usuarioService.existeByLogin(login)){
+                return "Login já cadastrado!";
+            }else {
+                usuarioService.salvar(usuario);
+                return "Cadastro realizado com sucesso!";
+            }
         }catch (Exception e){
-            return false;
+            return "Erro ao cadastrar";
         }
     }
 

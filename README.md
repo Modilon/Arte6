@@ -1,7 +1,7 @@
 # Manual do Dev
 
 Para rodar o projeto localmente precisamos realizar a instalação do docker que encontramos dentro deste link: [Instalação do Docker
-](https://www.vultr.com/docs/installing-docker-ce-on-ubuntu-16-04)
+](https://www.vultr.com/docs/installing-docker-ce-on-ubuntu-16-04).
 Após instalar o Docker será necessário baixar duas imagens, a do PostgreSQL e a do SonarQube.
 
 ## Instalando o Postgre no Docker

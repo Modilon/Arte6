@@ -46,6 +46,15 @@ public class Usuario {
 		this.dataNasc = dataNasc;
 	}
 
+	public Usuario(@NotEmpty Long idUsuario, @NotEmpty String email, @NotEmpty String login, @NotEmpty String senha, String nacionalidade, Date dataNasc) {
+		this.idUsuario = idUsuario;
+		this.email = email;
+		this.login = login;
+		this.senha = senha;
+		this.nacionalidade = nacionalidade;
+		this.dataNasc = dataNasc;
+	}
+
 	public Long getIdUsuario() {
 		return idUsuario;
 	}

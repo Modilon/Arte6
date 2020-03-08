@@ -69,6 +69,27 @@ public class UsuarioController {
         }
     }
 
+    @PutMapping("/editar/{email}/{login}/{senha}/{nacionalidade}/{datanasc}")
+    public String editarUsuario(@PathVariable("email") String email,
+                                @PathVariable("login") String login,
+                                @PathVariable("senha") String senha,
+                                @PathVariable("nacionalidade") String nacionalidade,
+                                @PathVariable("datanasc") String dataNasc){
+        try {
+            if (usuarioService.existeByLogin(login)) {
+                Date date = Date.valueOf(dataNasc);
+                Long idUsuario = usuarioService.buscarPorLogin(login).getIdUsuario();
+                Usuario usuario = new Usuario(idUsuario, email, login, senha, nacionalidade, date);
+                usuarioService.salvar(usuario);
+                return usuario.toString();
+            } else {
+                return "Usuário não encontrado";
+            }
+        }catch (Exception e){
+            return "Erro ao realizar update: " + e;
+        }
+    }
+
     @GetMapping("/buscar/{login}")
     public Usuario buscarUsuarioPorLogin(@PathVariable("login") String login){
         return usuarioService.buscarPorLogin(login);

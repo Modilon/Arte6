@@ -69,16 +69,16 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/editar/{email}/{login}/{senha}/{nacionalidade}/{datanasc}")
-    public String editarUsuario(@PathVariable("email") String email,
+    @PutMapping("/editar/{id}/{email}/{login}/{senha}/{nacionalidade}/{datanasc}")
+    public String editarUsuario(@PathVariable("id") Long idUsuario,
+                                @PathVariable("email") String email,
                                 @PathVariable("login") String login,
                                 @PathVariable("senha") String senha,
                                 @PathVariable("nacionalidade") String nacionalidade,
                                 @PathVariable("datanasc") String dataNasc){
         try {
-            if (usuarioService.existeByLogin(login)) {
+            if (usuarioService.existeByIdUsuario(idUsuario)) {
                 Date date = Date.valueOf(dataNasc);
-                Long idUsuario = usuarioService.buscarPorLogin(login).getIdUsuario();
                 Usuario usuario = new Usuario(idUsuario, email, login, senha, nacionalidade, date);
                 usuarioService.salvar(usuario);
                 return usuario.toString();

@@ -44,6 +44,11 @@ public class UsuarioService implements UsuarioServiceInterface {
     }
 
     @Override
+    public Boolean existeByIdUsuario(Long idUsuario) {
+        return usuarioRepository.existsByIdUsuario(idUsuario);
+    }
+
+    @Override
     public Boolean verificarDuplicidade(String login, Long id) {
         return null;
     }

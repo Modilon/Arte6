@@ -35,4 +35,20 @@ public class CategoriaController {
         }
     }
 
+    @PostMapping("/editar/{id}/{nome}")
+    public String editarCategoria(@PathVariable("id") Long idCategoria,
+                                  @PathVariable("nome") String nomeCategoria){
+        try {
+            if(categoriaService.existeByIdCategoria(idCategoria)){
+                Categoria categoria = new Categoria(idCategoria, nomeCategoria);
+                categoriaService.salvar(categoria);
+                return categoria.toString();
+            }else{
+                return "Categoria não cadastrada!";
+            }
+        }catch (Exception e){
+            return e.toString();
+        }
+    }
+
 }

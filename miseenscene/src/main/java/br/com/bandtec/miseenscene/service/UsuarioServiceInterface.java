@@ -18,6 +18,8 @@ public interface UsuarioServiceInterface {
 
     public Boolean existeByLogin(String login);
 
+    public Boolean existeByIdUsuario(Long idUsuario);
+
     public Boolean verificarDuplicidade(String login, Long id);
 
 }

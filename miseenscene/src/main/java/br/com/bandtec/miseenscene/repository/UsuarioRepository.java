@@ -17,6 +17,8 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
     public Boolean existsByLogin(String login);
 
+    public Boolean existsByIdUsuario(Long idUsuario);
+
     public List<Usuario> findAllByOrderByIdUsuario();
 
     @Query(value = "select case WHEN (count(u.id) > 0) then 1 else 0 end  "

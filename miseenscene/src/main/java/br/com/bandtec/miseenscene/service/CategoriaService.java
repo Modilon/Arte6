@@ -42,4 +42,9 @@ public class CategoriaService implements CategoriaServiceInterface {
     public Boolean existeByCategoria(String nomeCategoria) {
         return categoriaRepository.existsByNome(nomeCategoria);
     }
+
+    @Override
+    public Boolean existeByIdCategoria(Long idCategoria) {
+        return categoriaRepository.existsByIdCategoria(idCategoria);
+    }
 }

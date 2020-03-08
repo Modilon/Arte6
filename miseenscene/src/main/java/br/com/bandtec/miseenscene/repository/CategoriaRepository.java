@@ -13,6 +13,8 @@ public interface CategoriaRepository extends CrudRepository<Categoria, Long> {
 
     public Categoria findCategoriaByNome(String nomeCategoria);
 
+    public Boolean existsByIdCategoria(Long idCategoria);
+
     public Boolean existsByNome(String nomeCategoria);
 
     public List<Categoria> findAll();

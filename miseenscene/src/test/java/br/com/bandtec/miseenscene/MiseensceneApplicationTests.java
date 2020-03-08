@@ -21,10 +21,10 @@ class MiseensceneApplicationTests {
 
 	@Test
 	public void modelCategoria(){
-		Categoria categoria = new Categoria(1, "Teste");
-		categoria.setIdCategoria(1);
+		Categoria categoria = new Categoria();
+		categoria.setIdCategoria(Long.valueOf(1));
 		categoria.setNome("Teste");
-		Assert.assertEquals(1, categoria.getIdCategoria());
+		Assert.assertEquals(Long.valueOf(1), categoria.getIdCategoria());
 		Assert.assertEquals("Teste", categoria.getNome());
 		Assert.assertEquals("Categoria{idCategoria=1, nome='Teste'}", categoria.toString());
 		categoria = new Categoria();

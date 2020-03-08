@@ -1,15 +1,29 @@
 package br.com.bandtec.miseenscene.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
+@Entity
+@Table(name = "CATEGORIA")
 public class Categoria {
 
-	private int idCategoria;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(
+			name = "categoria_generator",
+			sequenceName = "categoria_sequence",
+			initialValue = 1
+	)
+	@Column(name = "ID_CAT")
+	private Long idCategoria;
 
+	@NotEmpty
+	@Column(name = "NOME_CAT")
 	private String nome;
 
 	public Categoria() {}
 
-	public Categoria(int idCategoria, String nome) {
-		this.idCategoria = idCategoria;
+	public Categoria(@NotEmpty String nome) {
 		this.nome = nome;
 	}
 
@@ -17,7 +31,7 @@ public class Categoria {
 		return nome;
 	}
 
-	public int getIdCategoria() {
+	public Long getIdCategoria() {
 		return idCategoria;
 	}
 
@@ -25,7 +39,7 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public void setIdCategoria(int idCategoria) {
+	public void setIdCategoria(Long idCategoria) {
 		this.idCategoria = idCategoria;
 	}
 

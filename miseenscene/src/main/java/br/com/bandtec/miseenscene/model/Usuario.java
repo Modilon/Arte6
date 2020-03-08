@@ -2,8 +2,10 @@ package br.com.bandtec.miseenscene.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.sql.Date;
 
 @Entity
+@Table(name = "USUARIO")
 public class Usuario {
 
 	@Id
@@ -16,21 +18,32 @@ public class Usuario {
 	private Long idUsuario;
 
 	@NotEmpty
+	@Column(unique = true, name = "EMAIL")
 	private String email;
 
 	@NotEmpty
+	@Column(name = "LOGIN")
 	private String login;
 
 	@NotEmpty
+	@Column(name = "SENHA")
 	private String senha;
+
+	@Column(name = "NACIONALIDADE")
+	private String nacionalidade;
+
+	@Column(name = "DATANASC")
+	private Date dataNasc;
 
 	public Usuario() {
 	}
 
-	public Usuario(@NotEmpty String email, @NotEmpty String login, @NotEmpty String senha) {
+	public Usuario(@NotEmpty String email, @NotEmpty String login, @NotEmpty String senha, String nacionalidade, Date dataNasc) {
 		this.email = email;
 		this.login = login;
 		this.senha = senha;
+		this.nacionalidade = nacionalidade;
+		this.dataNasc = dataNasc;
 	}
 
 	public Long getIdUsuario() {
@@ -65,6 +78,14 @@ public class Usuario {
 		this.senha = senha;
 	}
 
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
+	}
+
+	public Date getDataNasc() {
+		return dataNasc;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -80,9 +101,11 @@ public class Usuario {
 	public String toString() {
 		return "Usuario{" +
 				"idUsuario=" + idUsuario +
-				", Email='" + this.email + '\'' +
-				", Login='" + this.login + '\'' +
-				", Senha='" + this.senha + '\'' +
+				", email='" + email + '\'' +
+				", login='" + login + '\'' +
+				", senha='" + senha + '\'' +
+				", nacionalidade='" + nacionalidade + '\'' +
+				", dataNasc=" + dataNasc +
 				'}';
 	}
 }

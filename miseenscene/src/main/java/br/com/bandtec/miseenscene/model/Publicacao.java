@@ -1,20 +1,49 @@
 package br.com.bandtec.miseenscene.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "PUBLICACAO")
 public class Publicacao {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(
+			name = "publicacao_generator",
+			sequenceName = "publicacao_sequence",
+			initialValue = 1
+	)
 	private int idPublicacao;
 
+	@NotEmpty
+	@Column(name = "TITULO")
 	private String titulo;
 
+	@NotEmpty
+	@Column(name = "DESC")
 	private String desc;
 
+	@Column(name = "NOTAAVALIACAO")
 	private int notaAvaliacao;
 
+	@Column(name = "COMENTARIOS")
 	private String comentarios;
 
+	@NotEmpty
+	@Column(name = "DHINCLU")
 	private LocalDateTime dhInclu;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "ID_USUARIO", nullable = false, foreignKey = @ForeignKey(name = "ID_USUARIO"))
+	@JsonIgnore
+	private Usuario usuario;
+
+	public Publicacao() {
+	}
 
 	public Publicacao(int idPublicacao, String titulo, String desc, int notaAvaliacao, String comentarios, LocalDateTime dhInclu) {
 		this.idPublicacao = idPublicacao;

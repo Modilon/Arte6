@@ -5,6 +5,7 @@ import br.com.bandtec.miseenscene.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -47,11 +48,15 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/add/{email}/{login}/{senha}")
+    @PostMapping("/add/{email}/{login}/{senha}/{nacionalidade}/{datanasc}")
     public String salvarUsuario(@PathVariable("email") String email,
                                  @PathVariable("login") String login,
-                                 @PathVariable("senha") String senha){
-        Usuario usuario = new Usuario(email, login, senha);
+                                 @PathVariable("senha") String senha,
+                                 @PathVariable("nacionalidade") String nacionalidade,
+                                 @PathVariable("datanasc") String dataNasc){
+
+        Date date = Date.valueOf(dataNasc);
+        Usuario usuario = new Usuario(email, login, senha, nacionalidade, date);
         try{
             if(usuarioService.existeByLogin(usuario.getLogin())){
                 return "Login já cadastrado!";

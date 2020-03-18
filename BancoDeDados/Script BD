@@ -1,10 +1,28 @@
 create database arte6;
 
-CREATE TABLE USUARIO(
-                        ID_USUARIO int PRIMARY KEY	NOT NULL ,
-                        NOME		VARCHAR(60)	NOT NULL,
-                        EMAIL		VARCHAR(60)	NOT NULL,
-                        SENHA		VARCHAR(255) NOT NULL
+CREATE TABLE usuario (
+	id_usuario int4 NOT NULL,
+	email varchar(60) NOT NULL,
+	senha varchar(255) NOT NULL,
+	login varchar(255) NOT NULL,
+	datanasc timestamp NULL,
+	nacionalidade varchar(60) NULL,
+	descricao   VARCHAR(255) not null,
+	dataRegUser timestamp not null,
+	CONSTRAINT loginuniqueconstraint UNIQUE (login),
+	CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario)
+);
+
+create table HABILIDADE(
+						ID_HABILIDADE int primary key not null,
+						NOME_HABILIDADE VARCHAR(60) not null
+);
+
+create table USUARIO_HABILIDADES(
+						ID_HABILIDADE int,
+						   foreign key (ID_HABILIDADE) references HABILIDADE (ID_HABILIDADE),
+						ID_USUARIO int,
+                           foreign key (ID_USUARIO) REFERENCES USUARIO (ID_USUARIO)
 );
 
 CREATE TABLE PUBLICACAO(

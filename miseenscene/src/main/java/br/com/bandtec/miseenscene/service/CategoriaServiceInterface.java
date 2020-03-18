@@ -1,7 +1,6 @@
 package br.com.bandtec.miseenscene.service;
 
 import br.com.bandtec.miseenscene.model.Categoria;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.List;
 

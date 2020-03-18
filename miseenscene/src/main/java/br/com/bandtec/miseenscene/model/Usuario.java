@@ -32,27 +32,37 @@ public class Usuario {
 	@Column(name = "NACIONALIDADE")
 	private String nacionalidade;
 
+	@Column(name = "DESCRICAO")
+	private String descricao;
+
 	@Column(name = "DATANASC")
 	private Date dataNasc;
+
+	@Column(name = "DATAREGUSER")
+	private Date dataRegUser;
 
 	public Usuario() {
 	}
 
-	public Usuario(@NotEmpty String email, @NotEmpty String login, @NotEmpty String senha, String nacionalidade, Date dataNasc) {
+	public Usuario(@NotEmpty String email, @NotEmpty String login, @NotEmpty String senha, String nacionalidade, String descricao, Date dataNasc, Date dataRegUser) {
 		this.email = email;
 		this.login = login;
 		this.senha = senha;
 		this.nacionalidade = nacionalidade;
+		this.descricao = descricao;
 		this.dataNasc = dataNasc;
+		this.dataRegUser = dataRegUser;
 	}
 
-	public Usuario(@NotEmpty Long idUsuario, @NotEmpty String email, @NotEmpty String login, @NotEmpty String senha, String nacionalidade, Date dataNasc) {
+	public Usuario(@NotEmpty Long idUsuario, @NotEmpty String email, @NotEmpty String login, @NotEmpty String senha, String nacionalidade, String descricao, Date dataNasc, Date dataRegUser) {
 		this.idUsuario = idUsuario;
 		this.email = email;
 		this.login = login;
 		this.senha = senha;
 		this.nacionalidade = nacionalidade;
+		this.descricao = descricao;
 		this.dataNasc = dataNasc;
+		this.dataRegUser = dataRegUser;
 	}
 
 	public Long getIdUsuario() {
@@ -95,6 +105,30 @@ public class Usuario {
 		return dataNasc;
 	}
 
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public String getNacionalidade() {
+		return nacionalidade;
+	}
+
+	public void setNacionalidade(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
+	}
+
+	public void setDataRegUser(Date dataRegUser) {
+		this.dataRegUser = dataRegUser;
+	}
+
+	public Date getDataRegUser() {
+		return dataRegUser;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -114,7 +148,9 @@ public class Usuario {
 				", login='" + login + '\'' +
 				", senha='" + senha + '\'' +
 				", nacionalidade='" + nacionalidade + '\'' +
+				", descricao='" + descricao + '\'' +
 				", dataNasc=" + dataNasc +
+				", dataRegUser=" + dataRegUser +
 				'}';
 	}
 }

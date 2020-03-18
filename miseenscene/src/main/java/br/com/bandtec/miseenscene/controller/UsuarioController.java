@@ -48,15 +48,18 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/add/{email}/{login}/{senha}/{nacionalidade}/{datanasc}")
+    @PostMapping("/add/{email}/{login}/{senha}/{nacionalidade}/{descricao}/{datanasc}/{datareguser}")
     public String salvarUsuario(@PathVariable("email") String email,
                                  @PathVariable("login") String login,
                                  @PathVariable("senha") String senha,
                                  @PathVariable("nacionalidade") String nacionalidade,
-                                 @PathVariable("datanasc") String dataNasc){
+                                 @PathVariable("descricao") String descricao,
+                                 @PathVariable("datanasc") String dataNasc,
+                                 @PathVariable("datareguser") String dataRegUser){
 
         Date date = Date.valueOf(dataNasc);
-        Usuario usuario = new Usuario(email, login, senha, nacionalidade, date);
+        Date dateRegUser = Date.valueOf(dataRegUser);
+        Usuario usuario = new Usuario(email, login, senha, nacionalidade, descricao, date, dateRegUser);
         try{
             if(usuarioService.existeByLogin(usuario.getLogin())){
                 return "Login já cadastrado!";
@@ -69,17 +72,20 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/editar/{id}/{email}/{login}/{senha}/{nacionalidade}/{datanasc}")
-    public String editarUsuario(@PathVariable("id") Long idUsuario,
+    @PutMapping("/editar/{idUsuario}/{email}/{login}/{senha}/{nacionalidade}/{descricao}/{datanasc}/{datareguser}")
+    public String editarUsuario(@PathVariable("idUsuario") Long idUsuario,
                                 @PathVariable("email") String email,
                                 @PathVariable("login") String login,
                                 @PathVariable("senha") String senha,
                                 @PathVariable("nacionalidade") String nacionalidade,
-                                @PathVariable("datanasc") String dataNasc){
+                                @PathVariable("descricao") String descricao,
+                                @PathVariable("datanasc") String dataNasc,
+                                @PathVariable("datareguser") String dataRegUser){
         try {
             if (usuarioService.existeByIdUsuario(idUsuario)) {
                 Date date = Date.valueOf(dataNasc);
-                Usuario usuario = new Usuario(idUsuario, email, login, senha, nacionalidade, date);
+                Date dateRegUser = Date.valueOf(dataRegUser);
+                Usuario usuario = new Usuario(idUsuario, email, login, senha, nacionalidade, descricao, date, dateRegUser);
                 usuarioService.salvar(usuario);
                 return usuario.toString();
             } else {

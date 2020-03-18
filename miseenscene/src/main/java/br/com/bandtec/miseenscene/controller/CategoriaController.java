@@ -44,11 +44,22 @@ public class CategoriaController {
                 categoriaService.salvar(categoria);
                 return categoria.toString();
             }else{
-                return "Categoria não cadastrada!";
+                return "Categoria não editada!";
             }
         }catch (Exception e){
             return e.toString();
         }
+    }
+
+    @DeleteMapping("/excluir/{nome}")
+    public Boolean excluirCategoria(@PathVariable("nome") String nome){
+        try{
+
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+        return true;
     }
 
 }

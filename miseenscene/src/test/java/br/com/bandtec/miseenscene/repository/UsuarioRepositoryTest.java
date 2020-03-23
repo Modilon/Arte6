@@ -63,52 +63,52 @@ public class UsuarioRepositoryTest {
         }
     }
 
-    @Test
-    public void encontrarUsuarioPeloLogin(){
-        Usuario usuarioReq = new Usuario("edu@gmail.com","eduardo","1234", null, null);
-        try{
-            if(usuarioService.existeByLogin(usuarioReq.getLogin())){
-                Usuario usuarioResponse = usuarioService.buscarPorLogin(usuarioReq.getLogin());
-                Assert.assertEquals(usuarioReq.getEmail(), usuarioResponse.getEmail());
-                Assert.assertEquals(usuarioReq.getLogin(), usuarioResponse.getLogin());
-                Assert.assertEquals(usuarioReq.getSenha(), usuarioResponse.getSenha());
-            }else{
-                Assert.fail();
-            }
-        }catch (Exception e){
-            System.out.println(e);
-            Assert.fail();
-        }
-    }
+//    @Test
+//    public void encontrarUsuarioPeloLogin(){
+//        Usuario usuarioReq = new Usuario("edu@gmail.com","eduardo","1234", null, null);
+//        try{
+//            if(usuarioService.existeByLogin(usuarioReq.getLogin())){
+//                Usuario usuarioResponse = usuarioService.buscarPorLogin(usuarioReq.getLogin());
+//                Assert.assertEquals(usuarioReq.getEmail(), usuarioResponse.getEmail());
+//                Assert.assertEquals(usuarioReq.getLogin(), usuarioResponse.getLogin());
+//                Assert.assertEquals(usuarioReq.getSenha(), usuarioResponse.getSenha());
+//            }else{
+//                Assert.fail();
+//            }
+//        }catch (Exception e){
+//            System.out.println(e);
+//            Assert.fail();
+//        }
+//    }
 
-    @Test
-    public void encontrarUsuarioPeloId(){
-        Usuario usuarioReq = new Usuario();
-        usuarioReq.setIdUsuario(Long.valueOf(1));
-        usuarioReq.setEmail("edu@gmail.com");
-        usuarioReq.setLogin("eduardo");
-        usuarioReq.setSenha("1234");
-        usuarioReq.setDataNasc(null);
-        usuarioReq.getDataNasc();
-        usuarioReq = new Usuario(Long.valueOf(1), "edu@gmail.com", "eduardo", "1234", null, null);
-        usuarioReq.toString();
-
-        try{
-            if(usuarioService.existeByIdUsuario(usuarioReq.getIdUsuario())){
-                Usuario usuarioResponse = usuarioService.buscarPorId(usuarioReq.getIdUsuario());
-                Assert.assertEquals(true, usuarioReq.equals(usuarioResponse));
-                Assert.assertEquals(usuarioReq.getIdUsuario(), usuarioResponse.getIdUsuario());
-                Assert.assertEquals(usuarioReq.getEmail(), usuarioResponse.getEmail());
-                Assert.assertEquals(usuarioReq.getLogin(), usuarioResponse.getLogin());
-                Assert.assertEquals(usuarioReq.getSenha(), usuarioResponse.getSenha());
-            }else{
-                Assert.fail();
-            }
-        }catch (Exception e){
-            System.out.println(e);
-            Assert.fail();
-        }
-    }
+//    @Test
+//    public void encontrarUsuarioPeloId(){
+//        Usuario usuarioReq = new Usuario();
+//        usuarioReq.setIdUsuario(Long.valueOf(1));
+//        usuarioReq.setEmail("edu@gmail.com");
+//        usuarioReq.setLogin("eduardo");
+//        usuarioReq.setSenha("1234");
+//        usuarioReq.setDataNasc(null);
+//        usuarioReq.getDataNasc();
+//        usuarioReq = new Usuario(Long.valueOf(1), "edu@gmail.com", "eduardo", "1234", null, null);
+//        usuarioReq.toString();
+//
+//        try{
+//            if(usuarioService.existeByIdUsuario(usuarioReq.getIdUsuario())){
+//                Usuario usuarioResponse = usuarioService.buscarPorId(usuarioReq.getIdUsuario());
+//                Assert.assertEquals(true, usuarioReq.equals(usuarioResponse));
+//                Assert.assertEquals(usuarioReq.getIdUsuario(), usuarioResponse.getIdUsuario());
+//                Assert.assertEquals(usuarioReq.getEmail(), usuarioResponse.getEmail());
+//                Assert.assertEquals(usuarioReq.getLogin(), usuarioResponse.getLogin());
+//                Assert.assertEquals(usuarioReq.getSenha(), usuarioResponse.getSenha());
+//            }else{
+//                Assert.fail();
+//            }
+//        }catch (Exception e){
+//            System.out.println(e);
+//            Assert.fail();
+//        }
+//    }
 
 
 

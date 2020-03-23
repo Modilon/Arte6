@@ -1,8 +1,12 @@
 package br.com.bandtec.miseenscene.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "USUARIO")
@@ -40,6 +44,10 @@ public class Usuario {
 
 	@Column(name = "DATAREGUSER")
 	private Date dataRegUser;
+
+	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Set<HabilidadeUsuario> habilidadeUsuarios = new HashSet<>();
 
 	public Usuario() {
 	}
@@ -127,6 +135,14 @@ public class Usuario {
 
 	public Date getDataRegUser() {
 		return dataRegUser;
+	}
+
+	public Set<HabilidadeUsuario> getHabilidadeUsuarios() {
+		return habilidadeUsuarios;
+	}
+
+	public void setHabilidadeUsuarios(Set<HabilidadeUsuario> habilidadeUsuarios) {
+		this.habilidadeUsuarios = habilidadeUsuarios;
 	}
 
 	@Override
